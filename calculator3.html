@@ -1,0 +1,162 @@
+<html>
+<head>
+
+<!-- Name- Payel Bandyopadhyay,  Student Number - 014174692 -->
+
+<script type='text/javascript'>
+	
+	function calculator1() 
+	{
+	elem1 =  document.getElementById('numbers');
+
+	var elem2 = elem1.value;
+
+
+	var check1 = elem2.match(/\([^\(\)]*\)/);
+
+	if ( check1 != null)
+	{
+	var p2 = cal1(check1[0]);
+	var rep123 = elem2.replace(check1, p2); 
+	var check3 = rep123.match(/\([^\(\)]*\)/);	
+
+	while (check3 != null)
+  	{
+  	  p2 = cal1(check3[0]);
+    	  rep123 = rep123.replace(check3, p2);
+    	  check3 = rep123.match(/\([^\(\)]*\)/);
+
+ 	 } 
+
+
+        	if(check3 == null)
+   		{
+     		var p2 = cal1(rep123);
+  	 	}
+
+	}
+
+	else
+	{
+  	var p3  = cal1(elem2);
+	}
+
+
+	}
+
+
+
+	function cal1(elem) 
+	{
+
+
+	var elemOne = elem;
+	elemOne = calculator(elemOne);
+	var check2 = elemOne.match(/^-?[0-9]+\.?[0-9]*[+\-\/\*]\-?[0-9]*\.?[0-9]*/);
+
+
+	while (check2 != null)
+  	{
+   		elemOne = calculator(elemOne);
+   		check2 = elemOne.match(/-?[0-9]+\.?[0-9]*[+\-\/\*]-?[0-9]*\.?[0-9]*/);
+ 	 } 
+ 
+	if(check2 == null)
+   	 {
+  	   return elemOne;
+   	  }
+   
+	} 
+
+
+	function calculator(e1)
+	{
+
+
+	var result;
+	var argument1;
+	var operator1;
+	var argument2;
+	var check;
+
+	result = e1.match(/-?[0-9]+\.?[0-9]*[+\-\/\*]-?[0-9]+\.?[0-9]*/);
+
+
+	if(result !== null ) {
+	var res = result[0].match(/^\-/);
+
+	if(res !== null)
+	{
+	    var res1 = result[0].substring(1, result[0].length);
+	    
+	}
+
+	else
+	{
+	res1 = result[0];
+	
+	}
+
+	argument1 = result[0].match(/^-?[0-9]+\.?[0-9]*/);
+
+	operator1 = res1.match(/[^0-9\.]/);
+
+	argument2 = res1.match(/[+\-\*\/]([\-?0-9]+\.?[0-9]*)/);
+	argument2[0] = argument2[0].substring(1, argument2[0].length);
+
+
+	var p1 = ajaxFunction(argument1[0],operator1[0],argument2[0],e1);
+	e1 = p1.match(/[^()\s]+/).toString();
+	}
+
+	return e1;
+
+	}
+
+
+	function ajaxFunction(arg1,op,arg2,element)
+	{
+       
+        
+        	var xmlhttp= new XMLHttpRequest();
+        	xmlhttp.open("GET","calc.php?arg1="+arg1+"&arg2="+arg2+"&op="+op,false);
+     
+
+        	xmlhttp.onreadystatechange=function()
+        	{
+                	if (xmlhttp.readyState===4 && xmlhttp.status===200)
+                	{
+                     
+                       		var newDiv = document.createElement("div");
+                        	newDiv.innerHTML = xmlhttp.responseText;
+ 
+                      		var nextElement = document.getElementById("numbers");
+                       		 parentnode = nextElement.parentNode;
+                        	parentnode.insertBefore(newDiv, nextElement); 
+                	}
+        	}
+           
+          	 xmlhttp.send();
+
+           	var response1 = xmlhttp.responseText;
+          	var n = response1.indexOf("=");
+		response1 = response1.substring(n + 1, response1.length );
+ 		var rep = element.replace(arg1+op+arg2, response1); 
+                return rep;
+
+
+	}
+
+
+	
+
+</script>
+</head>
+
+<body>
+<form>
+</br> <input type='text' id='numbers'/>
+<input type='button' onclick="calculator1()" value='Submit' />
+</form>
+</body>
+</html>

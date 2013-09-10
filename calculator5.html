@@ -1,0 +1,185 @@
+<html>
+<head>
+
+<!-- Name- Payel Bandyopadhyay,  Student Number - 014174692 -->
+
+<script type="text/javascript">
+
+function series()
+  {
+
+	elem1 =  document.getElementById('numbers');
+	var elem2 = elem1.value;
+
+
+	if (elem2 == 'sin(x)')
+	{
+  	   sine();
+	}
+
+	else if ( elem2 == 'cos(x)')
+	{
+
+  	cosine();
+	}
+
+	else
+	{
+  	   alert("Not a valid input!");
+	}
+
+   }
+
+
+
+function sine()
+ {
+	 var x;
+        var c=document.getElementById("myCanvas");
+        var ctx=c.getContext("2d");
+        
+        c.width = c.width;
+
+        ctx.font="20px NewTimesRoman";
+
+        var gradient=ctx.createLinearGradient(0,0,c.width,0);
+        gradient.addColorStop("0","magenta");
+        gradient.addColorStop("0.5","blue");
+        gradient.addColorStop("1.0","red");
+
+        ctx.fillStyle=gradient;
+        ctx.fillText("Sine plot",10,90);
+    
+        var w = ctx.canvas.width;
+        var l = ctx.canvas.height;
+
+
+
+        ctx.moveTo(0, l/2);
+        ctx.lineTo(w,l/2);
+        ctx.moveTo(w/2,0);
+        ctx.lineTo(w/2,l);
+
+
+        ctx.moveTo(0, l/2);
+
+
+        for(x=-3.14; x<=3.20;)
+        {
+        var xp = x*(w/(2*Math.PI));
+
+	var a= 3*2*1;
+	var b = 5*4*3*2*1;
+	var c = 7*6*5*4*3*2*1;
+	var d = 9*8*7*6*5*4*3*2*1;
+
+	var p;
+        
+	 p = x - ((x*x*x)/a) + ((x*x*x*x*x)/b) - ((x*x*x*x*x*x*x)/c) + ((x*x*x*x*x*x*x*x*x)/d);
+         y = (l/2)*p;
+
+        if(x === 0)
+        {
+                ctx.moveTo(w/2+xp,l/2-y);
+        }
+        else
+        {
+                ctx.lineTo(w/2+xp,l/2-y);
+        }
+        ctx.stroke();
+	ctx.strokeStyle=gradient;
+        ctx.lineWidth=2;
+
+        x=x+0.1;
+       
+	}
+
+  }
+
+
+
+function cosine()
+  {
+	
+ 	
+	var x;
+	var c=document.getElementById("myCanvas");
+	var ctx=c.getContext("2d");
+	
+	c.width = c.width;
+
+	ctx.font="20px NewTimesRoman";
+
+	var gradient=ctx.createLinearGradient(0,0,c.width,0);
+	gradient.addColorStop("0","magenta");
+	gradient.addColorStop("0.5","blue");
+	gradient.addColorStop("1.0","red");
+
+	ctx.fillStyle=gradient;
+	ctx.fillText("Cosine plot",10,90);
+    
+	var w = ctx.canvas.width;
+        var l = ctx.canvas.height;
+
+
+
+	ctx.moveTo(0, l/2);
+	ctx.lineTo(w,l/2);
+	ctx.moveTo(w/2,0);
+	ctx.lineTo(w/2,l);
+
+
+	ctx.moveTo(0, l);
+
+
+	for(x=-3.14; x<=3.20;)
+	{
+	var xp = x*(w/(2*Math.PI));
+	
+	var a = 2*1;
+	var b = 4*3*2*1;
+	var c = 6*5*4*3*2*1;
+	var d = 8*7*6*5*4*3*2*1;
+	var e = 10*9*8*7*6*5*4*3*2*1;
+	
+	var p;
+        
+ 	p = 1- ((x*x)/a) + ((x*x*x*x)/b) - ((x*x*x*x*x*x)/c) + ((x*x*x*x*x*x*x*x)/d)- ((x*x*x*x*x*x*x*x*x*x)/e);
+	y = (l/2)*p;
+	
+
+	if(x === 0)
+	{
+		ctx.moveTo(w/2+xp,l/2-y);
+	}
+	else
+	{
+		ctx.lineTo(w/2+xp,l/2-y);
+	}
+	ctx.stroke();
+	ctx.strokeStyle=gradient;
+        ctx.lineWidth=2;
+	
+	x=x+0.1;
+	
+
+	}
+
+  }
+
+
+
+</script>
+</head>
+
+
+<body>
+<form action="#" name="f1">
+<canvas id="myCanvas" width="600" height="400" style="border:1px solid #d3d3d3;">
+Your browser doesnot support HTML5 canas</canvas>
+</br> <input type='text' id='numbers'/>
+<input type= 'button' value= 'Submit' onclick="series()" />
+</form>
+<br><span id="outtab"></span>
+</body>
+</html>

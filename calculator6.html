@@ -1,0 +1,345 @@
+<html>
+<head>
+
+<!-- Name- Payel Bandyopadhyay,  Student Number - 014174692 -->
+
+<script type="text/javascript">
+
+function series()
+  {
+
+	elem1 =  document.getElementById('numbers');
+	var elem2 = elem1.value;
+
+
+	if (elem2 == 'sin(x)')
+	{
+  	   sine();
+	}
+
+	else if ( elem2 == 'cos(x)')
+	{
+
+  	cosine();
+	}
+
+	else
+	{
+  	   alert("Not a valid input!");
+	}
+
+   }
+
+
+
+function sine()
+ {
+	 var x;
+        var c=document.getElementById("myCanvas");
+        var ctx=c.getContext("2d");
+        
+        c.width = c.width;
+
+        ctx.font="20px NewTimesRoman";
+
+        var gradient=ctx.createLinearGradient(0,0,c.width,0);
+        gradient.addColorStop("0","magenta");
+        gradient.addColorStop("0.5","blue");
+        gradient.addColorStop("1.0","red");
+
+        ctx.fillStyle=gradient;
+        ctx.fillText("Sine plot",10,90);
+    
+        var w = ctx.canvas.width;
+        var l = ctx.canvas.height;
+
+        ctx.moveTo(0, l/2);
+        ctx.lineTo(w,l/2);
+        ctx.moveTo(w/2,0);
+        ctx.lineTo(w/2,l);
+
+        ctx.moveTo(0, l/2);
+
+        for(x=-3.14; x<=3.2;)
+        {
+       var xp1 = x*(w/(2*Math.PI));
+
+	console.log("The output of x"+x);
+
+
+	var a = 3*2*1;
+        var b = 5*4*3*2*1;
+        var c = 7*6*5*4*3*2*1;
+        var d = 9*8*7*6*5*4*3*2*1;
+        var e = 11*10*9*8*7*6*5*4*3*2*1;
+        
+       var rim = x+"-(("+x+"*"+x+"*"+x+")/"+a+")+(("+x+"*"+x+"*"+x+"*"+x+"*"+x+")/"+b+")-(("+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+")/"+c+")+(("+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+")/"+d+")-(("+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+")/"+e+")"; 
+
+         var dim = calculator1(rim);
+    var d2 = 2; 
+        var rim1 = "("+l+"/"+d2+")*("+rim+")";
+
+        var dim1 = calculator1(rim1);
+        console.log("The constructed expresssion of rim1 is   "+rim1);
+
+        y = dim1;
+
+        if(x === 0)
+        {
+                ctx.moveTo(w/2+xp1,l/2-y);
+        }
+        else
+        {
+                ctx.lineTo(w/2+xp1,l/2-y);
+        }
+        ctx.stroke();
+	ctx.strokeStyle=gradient;
+	ctx.lineWidth=2;
+
+        console.log("the output of y is  "+y);
+	 x=x+0.1;
+
+	}
+
+	 console.log("All the calulations have been made");
+
+
+  }
+
+
+
+function cosine()
+  {
+	
+ 	
+	var x;
+	var c=document.getElementById("myCanvas");
+	var ctx=c.getContext("2d");
+	
+	c.width = c.width;
+
+	ctx.font="20px NewTimesRoman";
+
+	var gradient=ctx.createLinearGradient(0,0,c.width,0);
+	gradient.addColorStop("0","magenta");
+	gradient.addColorStop("0.5","blue");
+	gradient.addColorStop("1.0","red");
+
+	ctx.fillStyle=gradient;
+	ctx.fillText("Cosine plot",10,90);
+    
+	var w = ctx.canvas.width;
+        var l = ctx.canvas.height;
+
+
+
+	ctx.moveTo(0, l/2);
+	ctx.lineTo(w,l/2);
+	ctx.moveTo(w/2,0);
+	ctx.lineTo(w/2,l);
+
+
+	ctx.moveTo(0, l);
+
+
+	for(x=-3.14; x<=3.2;)
+	{
+	var xp = x*(w/(2*Math.PI));
+
+	console.log("the output of x is  "+x);
+
+
+	var a = 2*1;
+        var b = 4*3*2*1;
+        var c = 6*5*4*3*2*1;
+        var d = 8*7*6*5*4*3*2*1;
+        var e = 10*9*8*7*6*5*4*3*2*1;
+	
+
+	 var d1 = 1;
+      
+       var rim = d1+"-(("+x+"*"+x+")/"+a+")+(("+x+"*"+x+"*"+x+"*"+x+")/"+b+")-(("+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+")/"+c+")+(("+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+")/"+d+")-(("+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+"*"+x+")/"+e+")"; 
+
+        var dim = calculator1(rim);
+      
+        var d2 = 2;
+        var rim1 = "("+l+"/"+d2+")*("+rim+")";
+        console.log("The constructed expresssion of rim1 is   "+rim1);
+ 
+
+        var dim1 = calculator1(rim1);
+        y = dim1;
+
+	if(x === 0)
+	{
+		ctx.moveTo(w/2+xp,l/2-y);
+	}
+	else
+	{
+		ctx.lineTo(w/2+xp,l/2-y);
+	}
+	ctx.stroke();
+	ctx.strokeStyle=gradient;
+	ctx.lineWidth=2;
+
+	console.log("the output of y is  "+y);
+
+
+	x=x+0.1;
+
+
+	}
+      console.log("All calculations done !");
+
+  }
+
+
+	function calculator1(elem1)
+	 {
+
+		var elem2 = elem1;
+		var check1 = elem2.match(/\([^\(\)]*\)/);
+
+		if ( check1 != null)
+		  {
+	 	    var p2 = cal1(check1[0]);
+		    var rep123 = elem2.replace(check1, p2); 
+		    var check3 = rep123.match(/\([^\(\)]*\)/);
+
+			while (check3 != null)
+  			{
+    		   	   p2 = cal1(check3[0]);
+    		  	    rep123 = rep123.replace(check3, p2);
+    		   	    check3 = rep123.match(/\([^\(\)]*\)/);
+
+  			} 
+
+	         	if(check3 == null)
+   	     	    	{
+     	       		  var p2 = cal1(rep123);
+       	       		  return p2;
+   	     	    	}
+		}
+
+      	       else
+		{
+  	  	   var p3  = cal1(elem2);
+	  	   return p3;
+		}
+
+	}
+
+
+
+
+
+	function cal1(elem) 
+	{
+
+	var elemOne = elem;
+	elemOne = calculator(elemOne);
+
+	var check2 = elemOne.match(/^-?[0-9]+\.?[0-9]*[+\-\/\*]\-?[0-9]*\.?[0-9]*/);
+
+
+		while (check2 != null)
+  		{
+  		   elemOne = calculator(elemOne);
+   		   check2 = elemOne.match(/-?[0-9]+\.?[0-9]*[+\-\/\*]-?[0-9]*\.?[0-9]*/);
+  		} 
+ 
+		if(check2 == null)
+   		{
+   		return elemOne;
+   		}
+
+	} 
+
+
+	function calculator(e1)
+	{
+
+	var result;
+	var argument1;
+	var operator1;
+	var argument2;
+	var check;
+
+	result = e1.match(/-?[0-9]+\.?[0-9]*[+\-\/\*]-?[0-9]+\.?[0-9]*/);
+
+		if(result !== null ) 
+		{
+		    var res = result[0].match(/^\-/);
+
+			if(res !== null)
+				{
+				   var res1 = result[0].substring(1, result[0].length);
+				}
+
+			else
+				{
+				  res1 = result[0];
+				}
+
+	   	argument1 = result[0].match(/^-?[0-9]+\.?[0-9]*/);
+
+		operator1 = res1.match(/[^0-9\.]/);
+
+		argument2 = res1.match(/[+\-\*\/]([\-?0-9]+\.?[0-9]*)/);
+		argument2[0] = argument2[0].substring(1, argument2[0].length);
+
+		var p1 = ajaxFunction(argument1[0],operator1[0],argument2[0],e1);
+		e1 = p1.match(/[^()\s]+/).toString();
+
+		}
+
+	return e1;
+
+	}
+
+
+	function ajaxFunction(arg1,op,arg2,element)
+	{
+        
+        	var xmlhttp= new XMLHttpRequest();
+        	xmlhttp.open("GET","calc.php?arg1="+arg1+"&arg2="+arg2+"&op="+op,false);
+     
+
+        	xmlhttp.onreadystatechange=function()
+        		{
+               		   if (xmlhttp.readyState===4 && xmlhttp.status===200)
+                		{
+                     
+                       		var newDiv = document.createElement("div");
+                        	newDiv.innerHTML = xmlhttp.responseText;
+                		}
+        		}
+           
+                xmlhttp.send();
+
+                var response1 = xmlhttp.responseText;
+                var n = response1.indexOf("=");
+	        response1 = response1.substring(n + 1, response1.length );
+
+                var rep = element.replace(arg1+op+arg2, response1); 
+           	return rep;
+
+
+	}
+
+
+</script>
+</head>
+
+
+
+<body>
+<form action="#" name="f1">
+<canvas id="myCanvas" width="600" height="400" style="border:1px solid #d3d3d3;">
+Your browser doesnot support HTML5 canas</canvas>
+</br> <input type='text' id='numbers'/>
+<input type= 'button' value= 'Submit' onclick="series()" />
+</form>
+<br><span id="outtab"></span>
+</body>
+</html>

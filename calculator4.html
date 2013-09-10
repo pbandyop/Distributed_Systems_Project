@@ -1,0 +1,51 @@
+<html>
+<head>
+
+<!-- Name- Payel Bandyopadhyay,  Student Number - 014174692 -->
+
+<script type="text/javascript" >
+
+	function ajaxFunction()
+	{
+        	var arg1 = document.getElementById("tx1").value;
+        	var xmlhttp= new XMLHttpRequest();
+        	xmlhttp.open("GET","calc_server.php?input1="+arg1,true);
+        	xmlhttp.send();
+
+        	xmlhttp.onreadystatechange=function()
+        	{
+                	if (xmlhttp.readyState===4 && xmlhttp.status===200)
+                	{
+                        
+                        var newImg = document.createElement("img");
+                        newImg.src = "data:image/png;base64,"+xmlhttp.responseText;
+                        var nextElement = document.getElementById("toto");
+                        parentnode = nextElement.parentNode;
+                        parentnode.insertBefore(newImg, nextElement.nextSibling);
+           		}
+        	} 
+
+	}
+
+
+</script>
+</head>
+
+
+
+<body>
+<form id = "frm1">
+<div id = "container">
+<input id = "tx1" type="text" name="input1">
+<input id ="toto" type="button" value="Submit" onclick="ajaxFunction();"/>
+</div>
+</form>
+<style>
+img
+  {
+   float: right;
+
+  }
+</style>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<html>
+<head>
+
+<!-- Name- Payel Bandyopadhyay,  Student Number - 014174692 -->
+
+<script type="text/javascript" >
+
+function ajaxFunction()
+{
+	var arg1 = document.getElementById("nm1").value;
+	var arg2 = document.getElementById("nm2").value;
+	var op = document.getElementById("opt1").value;
+	var xmlhttp= new XMLHttpRequest();
+	xmlhttp.open("GET","calc.php?arg1="+arg1+"&arg2="+arg2+"&op="+op,true);
+      
+	xmlhttp.send();
+
+	xmlhttp.onreadystatechange=function()
+ 	{
+  		if (xmlhttp.readyState===4 && xmlhttp.status===200)
+    		{
+    		
+			var newDiv = document.createElement("div");
+			newDiv.innerHTML = xmlhttp.responseText;
+			var nextElement = document.getElementById("nm1");
+			parentnode = nextElement.parentNode;
+			parentnode.insertBefore(newDiv, nextElement);
+    		}
+  	} 
+}
+
+
+
+</script>
+</head>
+
+
+<body>
+<form id = "frm1">
+<input id = "nm1" type="text" name="arg1">
+
+
+<select id = "opt1" name="op">
+<option  value="+">+</option>
+<option value="-">-</option>
+<option value="*">*</option>
+<option value="/">/</option>
+</select>
+
+<input id = "nm2" type="text" name="arg2">
+<input id ="toto" type="button" value="Submit" onclick="ajaxFunction();"/>
+
+<div id="divTest"> </div>
+</form>
+</body>
+</html>                                                                                                                                                                                                                                                                                                       
